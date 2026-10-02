@@ -1,35 +1,38 @@
 # PLC-Based Predictive Maintenance Using Machine Learning
 
 ## Project Overview
-Bearing-condition classification using vibration data, with a PLC as the operational and control core and a machine learning model for classification.
+This project aims to classify bearing conditions using vibration analysis and machine learning, with a PLC-based monitoring and control system.
 
 ## Dataset
-Source: Case Western Reserve University (CWRU) Bearing Data Center
-https://engineering.case.edu/bearingdatacenter/download-data-file
+**Source:** [CWRU Bearing Data Center](https://engineering.case.edu/bearingdatacenter/download-data-file)
 
-The initial analysis uses two 12 kHz drive-end vibration recordings:
-- Normal_0: Healthy bearing
-- IR007_0: Inner race fault (0.007-inch fault diameter)
+The initial analysis uses 12 kHz Drive End (DE) vibration recordings:
+- **Normal_0:** Healthy bearing
+- **IR007_0:** Inner race fault (0.007-inch fault)
 
-Original dataset files are available in the `dataset/` folder.
+Raw MATLAB (.mat) dataset files are not included due to their size.
+
+## Feature Extraction
+Vibration signals are divided into 1,200-sample windows with a 600-sample step (50% overlap). The following features are calculated:
+
+- **RMS:** Measures the overall vibration level.
+- **Peak Amplitude:** The highest absolute vibration value in a window.
+- **Crest Factor:** Ratio of peak amplitude to RMS; indicates sharp vibration peaks.
+- **Kurtosis:** Measures how strongly the signal contains sharp peaks or impulsive events.
 
 ## Work Completed
-- Loaded the MATLAB (.mat) vibration recordings in Google Colab.
-- Visualised healthy and faulty vibration signals.
-- Calculated RMS, peak amplitude, crest factor and kurtosis.
-- Implemented window-based feature extraction using 1,200-sample windows and 600-sample steps.
-- Generated an initial feature CSV for machine learning.
+- Vibration signal visualisation and analysis
+- Statistical feature extraction
+- Window-based feature dataset preparation
 
-## Repository Contents
-- `dataset/`: Original vibration recordings.
-- `Bearing_Vibration_Analysis.ipynb`: Python analysis notebook.
-- `bearing_features.csv`: Extracted vibration features, if included.
-
-## Limitations
-The initial analysis uses one healthy and one faulty recording. The overlapping windows are not independent recordings. Further data, validation and testing are required before drawing general conclusions about model performance.
+## Tools
+Python, Google Colab, NumPy, SciPy, Pandas, Matplotlib
 
 ## Future Work
-- Expand the dataset.
 - Train and evaluate a bearing-condition classifier.
-- Integrate the ML model with PLC control and monitoring.
-- Validate the integrated system.
+- Integrate the model with a PLC.
+- Develop a monitoring interface.
+- Explore remaining useful life (RUL) estimation.
+
+## Limitations
+The initial analysis uses one healthy and one faulty recording. Further data and validation are required. Machine learning development and PLC integration are ongoing.
